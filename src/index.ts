@@ -1,5 +1,5 @@
+import { SetupServer } from './infra/http/server';
 import { logger } from './logger';
-import { SetupServer } from './server';
 
 enum ExitStatus {
   Failure = 1,

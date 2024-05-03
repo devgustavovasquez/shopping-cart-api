@@ -1,21 +1,31 @@
 import express, { Application } from 'express';
 import { Server } from 'http';
 
-import { logger } from './logger';
+import { logger } from '../../logger';
+import { Database } from '../database';
+import { CartsController } from './controllers/carts-controller';
 
 export class SetupServer {
   private app: Application;
   private server: Server;
+  private database: Database;
 
   constructor() {
     this.app = express();
+    this.database = new Database();
     this.server = new Server(this.app);
   }
 
-  public async setupControllers(): Promise<void> {
-    // Aqui você pode configurar os controladores da sua aplicação
-    // Exemplo:
-    // this.app.use('/api', myApiController);
+  private async setupControllers(): Promise<void> {
+    const cartsController = new CartsController(this.database);
+    this.app.post('/carts', cartsController.create);
+    logger.info('[POST] /carts');
+    this.app.put('/carts', cartsController.update);
+    logger.info('[PUT] /carts');
+    this.app.post('/carts/confirm', cartsController.confirmPurchase);
+    logger.info('[POST] /carts/confirm');
+    this.app.delete('/carts', cartsController.delete);
+    logger.info('[DELETE] /carts');
   }
 
   public async start(port: number): Promise<void> {
