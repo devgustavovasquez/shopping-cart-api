@@ -1,5 +1,7 @@
+import { Product } from "./product"
+
 export type CartItemProps = {
-  productId: number
+  product: Product
   quantity: number
 }
 
@@ -7,13 +9,12 @@ export class CartItem {
   private props: CartItemProps
 
   constructor(props: CartItemProps) {
-    this.validateInteger("quantity", props.quantity)
-    this.validateInteger("productId", props.productId)
+    this.validateQuantity(props.quantity)
     this.props = props
   }
 
-  get productId() {
-    return this.props.productId
+  get product() {
+    return this.props.product
   }
 
   get quantity() {
@@ -21,19 +22,19 @@ export class CartItem {
   }
 
   set quantity(quantity: number) {
-    this.validateInteger("quantity", quantity)
+    this.validateQuantity(quantity)
     this.props.quantity = quantity
   }
 
-  private validateInteger(field: keyof CartItemProps, value: number) {
+  private validateQuantity(value: number) {
     if (value <= 0) {
-      throw new Error(`${field} must be greater than zero`)
+      throw new Error('Quantity must be greater than zero')
     }
 
     const isDecimal = value % 1 !== 0
 
     if (isDecimal) {
-      throw new Error(`${field} must be an integer`)
+      throw new Error('Quantity must be an integer')
     }
   }
 }
