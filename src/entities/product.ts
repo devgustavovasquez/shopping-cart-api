@@ -1,6 +1,8 @@
+import { Name } from "./value-objects/name"
+
 type ProductProps = {
   id: number
-  name: string
+  name: Name
   price: number
   stock: number
 }
@@ -18,7 +20,7 @@ export class Product {
   }
 
   get name() {
-    return this.props.name
+    return this.props.name.value
   }
 
   get price() {

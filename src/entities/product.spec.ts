@@ -1,10 +1,11 @@
 import { Product } from "./product";
+import { Name } from "./value-objects/name";
 
 describe('Product', () => {
   it('should be able to create a product', () => {
     const product = new Product({
       id: 1,
-      name: 'Product 1',
+      name: new Name("Product 1"),
       price: 10,
       stock: 10
     })
@@ -19,7 +20,7 @@ describe('Product', () => {
     expect(() => {
       new Product({
         id: 1,
-        name: 'Product 1',
+        name: new Name("Product 1"),
         price: 0,
         stock: 10
       })
@@ -30,7 +31,7 @@ describe('Product', () => {
     expect(() => {
       new Product({
         id: 1,
-        name: 'Product 1',
+        name: new Name("Product 1"),
         price: 100000000.00,
         stock: 10
       })
