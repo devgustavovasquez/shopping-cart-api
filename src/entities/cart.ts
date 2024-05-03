@@ -2,6 +2,7 @@ import { CartItem } from "./cart-item";
 
 export type CartItemProps = {
   id: number
+  userId: number
   items: CartItem[]
 }
 
@@ -14,6 +15,10 @@ export class Cart {
 
   get id() {
     return this.props.id
+  }
+
+  get userId() {
+    return this.props.userId
   }
 
   get items() {

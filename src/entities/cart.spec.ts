@@ -14,6 +14,7 @@ describe('Cart', () => {
   it('should be able to create a cart', () => {
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: []
     })  
 
@@ -21,6 +22,7 @@ describe('Cart', () => {
 
     expect(cart).toBeTruthy()
     expect(cart.id).toBe(1)
+    expect(cart.userId).toBe(1)
     expect(cart.items).toHaveLength(1)
     expect(cart.items[0].product).toBe(product)
     expect(cart.items[0].quantity).toBe(10)
@@ -30,6 +32,7 @@ describe('Cart', () => {
   it("should to be able to add an item to the cart", () => {
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: [makeCartItem({ product })]
     })
 
@@ -45,6 +48,7 @@ describe('Cart', () => {
     const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: []
     })
 
@@ -64,6 +68,7 @@ describe('Cart', () => {
     const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: []
     })
 
@@ -78,6 +83,7 @@ describe('Cart', () => {
   it("should to be able to clear the cart", () => {
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: [makeCartItem({ product })]
     })
 
@@ -91,6 +97,7 @@ describe('Cart', () => {
     const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: [cartItem]
     })
 
@@ -103,6 +110,7 @@ describe('Cart', () => {
     const product2 = makeProduct({ price: 20 })
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: [
         makeCartItem({
           product,
@@ -121,6 +129,7 @@ describe('Cart', () => {
   it("should not to be able reduce an item from the cart is it not exists", () => {
     const cart = new Cart({
       id: 1, 
+      userId: 1,
       items: []
     })  
 
