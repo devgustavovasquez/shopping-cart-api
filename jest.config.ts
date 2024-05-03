@@ -1,6 +1,6 @@
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 
-export default <Config> {
+export default <Config>{
   preset: 'ts-jest',
   testEnvironment: 'node',
   roots: ['<rootDir>/src'],

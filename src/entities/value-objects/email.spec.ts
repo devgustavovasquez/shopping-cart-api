@@ -1,4 +1,4 @@
-import { Email } from "./email";
+import { Email } from './email';
 
 describe('Email', () => {
   it('should be able to create an email', () => {
