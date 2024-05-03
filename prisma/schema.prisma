@@ -8,38 +8,39 @@ datasource db {
 }
 
 model Usuario {
-  id        Int        @id @default(autoincrement())
-  nome      String
-  email     String
-  senha     String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  Carrinho  Carrinho[]
+  id    Int    @id @default(autoincrement())
+  nome  String
+  email String
+  senha String
 
   @@map("usuarios")
 }
 
 model Produto {
-  id        Int        @id @default(autoincrement())
-  nome      String
-  preco     Float
-  estoque   Int
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  Carrinho  Carrinho[]
+  id           Int            @id @default(autoincrement())
+  nome         String
+  preco        Float
+  estoque      Int
+  CarrinhoItem CarrinhoItem[]
 
   @@map("produtos")
 }
 
 model Carrinho {
-  id         Int      @id @default(autoincrement())
-  usuario_id Int
-  produto_id Int
-  quantidade Int
-  usuario    Usuario  @relation(fields: [usuario_id], references: [id])
-  produto    Produto  @relation(fields: [produto_id], references: [id])
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  id           Int            @id @default(autoincrement())
+  usuario_id   Int
+  CarrinhoItem CarrinhoItem[]
 
   @@map("carrinhos")
+}
+
+model CarrinhoItem {
+  id          Int      @id @default(autoincrement())
+  carrinho_id Int
+  produto_id  Int
+  quantidade  Int
+  Carrinho    Carrinho @relation(fields: [carrinho_id], references: [id])
+  Produto     Produto  @relation(fields: [produto_id], references: [id])
+
+  @@map("carrinho_items")
 }
