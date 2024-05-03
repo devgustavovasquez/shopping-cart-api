@@ -1,15 +1,15 @@
 import { CartItem } from './cart-item';
 
-export type CartItemProps = {
+export type CartProps = {
   id: number;
   userId: number;
   items: CartItem[];
 };
 
 export class Cart {
-  private props: CartItemProps;
+  private props: CartProps;
 
-  constructor(props: CartItemProps) {
+  constructor(props: CartProps) {
     this.props = props;
   }
 

@@ -27,4 +27,10 @@ export class InMemoryCartsRepository implements CartsRepository {
 
     return cart || null;
   }
+
+  async save(cart: Cart): Promise<void> {
+    const index = this.items.findIndex((item) => item.id === cart.id);
+
+    this.items[index] = cart;
+  }
 }

@@ -4,23 +4,23 @@ import { CartsRepository } from '../repositories/carts-repository';
 import { ProductsRepository } from '../repositories/products-repository';
 import { UsersRepository } from '../repositories/users-repository';
 
-type CreateCartRequest = {
+type UpdateCartRequest = {
   userId: number;
   items: { productId: number; quantity: number }[];
 };
 
-type CreateCartResponse = {
+type UpdateCartResponse = {
   cart: Cart;
 };
 
-export class CreateCartUseCase {
+export class UpdateCartUseCase {
   constructor(
     private readonly cartsRepository: CartsRepository,
     private readonly productsRepository: ProductsRepository,
     private readonly usersRepository: UsersRepository
   ) {}
 
-  async execute(request: CreateCartRequest): Promise<CreateCartResponse> {
+  async execute(request: UpdateCartRequest): Promise<UpdateCartResponse> {
     const { userId, items } = request;
 
     const user = await this.usersRepository.findById(userId);
@@ -29,10 +29,10 @@ export class CreateCartUseCase {
       throw new Error('User not found');
     }
     
-    const cartAlreadyExists = await this.cartsRepository.findByUserId(userId);
+    const cart = await this.cartsRepository.findByUserId(userId);
 
-    if (cartAlreadyExists) {
-      throw new Error('Cart already exists');
+    if (!cart) {
+      throw new Error('Cart not found');  
     }
 
     const products = await this.productsRepository.findByIdRange(
@@ -52,18 +52,13 @@ export class CreateCartUseCase {
       });
     });
 
-    const rawCart = new Cart({
-      id: 0,
-      userId,
-      items: [],
-    });
-
+    
     for (const item of cartItems) {
       // TODO: improve this
-      rawCart.addItem(item);
+      cart.addItem(item);
     }
 
-    const cart = await this.cartsRepository.create(rawCart);
+    await this.cartsRepository.save(cart);
 
     for (const item of cart.items) {
       // TODO: improve this
