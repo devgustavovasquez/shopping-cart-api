@@ -17,7 +17,7 @@ export class CreateCartUseCase {
   constructor(
     private readonly cartsRepository: CartsRepository,
     private readonly productsRepository: ProductsRepository,
-    private readonly usersRepository: UsersRepository
+    private readonly usersRepository: UsersRepository,
   ) {}
 
   async execute(request: CreateCartRequest): Promise<CreateCartResponse> {
@@ -28,7 +28,7 @@ export class CreateCartUseCase {
     if (!user) {
       throw new Error('User not found');
     }
-    
+
     const cartAlreadyExists = await this.cartsRepository.findByUserId(userId);
 
     if (cartAlreadyExists) {

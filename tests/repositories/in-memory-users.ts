@@ -15,7 +15,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async create(raw: User): Promise<User> {
     const user = new User({
       id: this.items.length + 1,
-      name: new Name(raw.name), 
+      name: new Name(raw.name),
       email: new Email(raw.email),
       password: raw.password,
     });

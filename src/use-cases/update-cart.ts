@@ -17,7 +17,7 @@ export class UpdateCartUseCase {
   constructor(
     private readonly cartsRepository: CartsRepository,
     private readonly productsRepository: ProductsRepository,
-    private readonly usersRepository: UsersRepository
+    private readonly usersRepository: UsersRepository,
   ) {}
 
   async execute(request: UpdateCartRequest): Promise<UpdateCartResponse> {
@@ -28,11 +28,11 @@ export class UpdateCartUseCase {
     if (!user) {
       throw new Error('User not found');
     }
-    
+
     const cart = await this.cartsRepository.findByUserId(userId);
 
     if (!cart) {
-      throw new Error('Cart not found');  
+      throw new Error('Cart not found');
     }
 
     const products = await this.productsRepository.findByIdRange(
@@ -52,7 +52,6 @@ export class UpdateCartUseCase {
       });
     });
 
-    
     for (const item of cartItems) {
       // TODO: improve this
       cart.addItem(item);
