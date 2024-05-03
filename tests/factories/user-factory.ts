@@ -1,6 +1,6 @@
-import { User, UserProps } from '../../src/entities/user';
-import { Email } from '../../src/entities/value-objects/email';
-import { Name } from '../../src/entities/value-objects/name';
+import { User, UserProps } from '../../src/domain/entities/user';
+import { Email } from '../../src/domain/entities/value-objects/email';
+import { Name } from '../../src/domain/entities/value-objects/name';
 
 export function makeUser(override: Partial<UserProps> = {}) {
   return new User({

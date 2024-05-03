@@ -1,5 +1,5 @@
-import { Cart } from '../../src/entities/cart';
-import { CartsRepository } from '../../src/repositories/carts-repository';
+import { Cart } from '../../src/domain/entities/cart';
+import { CartsRepository } from '../../src/domain/repositories/carts-repository';
 
 export class InMemoryCartsRepository implements CartsRepository {
   public items: Cart[] = [];

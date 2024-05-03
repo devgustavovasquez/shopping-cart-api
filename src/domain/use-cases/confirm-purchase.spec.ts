@@ -1,10 +1,10 @@
-import { makeCart } from '../../tests/factories/cart-factory';
-import { makeCartItem } from '../../tests/factories/cart-item-factory';
-import { makeProduct } from '../../tests/factories/product-factory';
-import { makeUser } from '../../tests/factories/user-factory';
-import { InMemoryCartsRepository } from '../../tests/repositories/in-memory-carts';
-import { InMemoryProductsRepository } from '../../tests/repositories/in-memory-products';
-import { InMemoryUsersRepository } from '../../tests/repositories/in-memory-users';
+import { makeCart } from '../../../tests/factories/cart-factory';
+import { makeCartItem } from '../../../tests/factories/cart-item-factory';
+import { makeProduct } from '../../../tests/factories/product-factory';
+import { makeUser } from '../../../tests/factories/user-factory';
+import { InMemoryCartsRepository } from '../../../tests/repositories/in-memory-carts';
+import { InMemoryProductsRepository } from '../../../tests/repositories/in-memory-products';
+import { InMemoryUsersRepository } from '../../../tests/repositories/in-memory-users';
 import { ConfirmPurchaseUseCase } from './confirm-purchase';
 
 let sut: ConfirmPurchaseUseCase;

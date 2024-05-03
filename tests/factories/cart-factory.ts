@@ -1,4 +1,4 @@
-import { Cart, CartProps } from '../../src/entities/cart';
+import { Cart, CartProps } from '../../src/domain/entities/cart';
 
 export function makeCart(override: Partial<CartProps> = {}) {
   return new Cart({

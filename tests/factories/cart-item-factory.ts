@@ -1,4 +1,4 @@
-import { CartItem, CartItemProps } from '../../src/entities/cart-item';
+import { CartItem, CartItemProps } from '../../src/domain/entities/cart-item';
 import { makeProduct } from './product-factory';
 
 export function makeCartItem(override: Partial<CartItemProps> = {}) {

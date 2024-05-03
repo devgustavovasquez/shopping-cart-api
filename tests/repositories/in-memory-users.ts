@@ -1,7 +1,7 @@
-import { User } from '../../src/entities/user';
-import { Email } from '../../src/entities/value-objects/email';
-import { Name } from '../../src/entities/value-objects/name';
-import { UsersRepository } from '../../src/repositories/users-repository';
+import { User } from '../../src/domain/entities/user';
+import { Email } from '../../src/domain/entities/value-objects/email';
+import { Name } from '../../src/domain/entities/value-objects/name';
+import { UsersRepository } from '../../src/domain/repositories/users-repository';
 
 export class InMemoryUsersRepository implements UsersRepository {
   public items: User[] = [];

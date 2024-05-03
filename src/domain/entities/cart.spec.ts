@@ -1,5 +1,5 @@
-import { makeCartItem } from '../../tests/factories/cart-item-factory';
-import { makeProduct } from '../../tests/factories/product-factory';
+import { makeCartItem } from '../../../tests/factories/cart-item-factory';
+import { makeProduct } from '../../../tests/factories/product-factory';
 import { Cart } from './cart';
 import { Product } from './product';
 

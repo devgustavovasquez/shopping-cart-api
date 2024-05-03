@@ -1,5 +1,5 @@
-import { Product, ProductProps } from '../../src/entities/product';
-import { Name } from '../../src/entities/value-objects/name';
+import { Product, ProductProps } from '../../src/domain/entities/product';
+import { Name } from '../../src/domain/entities/value-objects/name';
 
 export function makeProduct(override: Partial<ProductProps> = {}) {
   return new Product({

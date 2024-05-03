@@ -1,4 +1,4 @@
-import { makeProduct } from '../../tests/factories/product-factory';
+import { makeProduct } from '../../../tests/factories/product-factory';
 import { CartItem } from './cart-item';
 
 describe('CartItem', () => {

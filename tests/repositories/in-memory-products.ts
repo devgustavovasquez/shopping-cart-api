@@ -1,6 +1,6 @@
-import { Product } from '../../src/entities/product';
-import { Name } from '../../src/entities/value-objects/name';
-import { ProductsRepository } from '../../src/repositories/products-repository';
+import { Product } from '../../src/domain/entities/product';
+import { Name } from '../../src/domain/entities/value-objects/name';
+import { ProductsRepository } from '../../src/domain/repositories/products-repository';
 
 export class InMemoryProductsRepository implements ProductsRepository {
   public items: Product[] = [];

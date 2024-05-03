@@ -1,8 +1,8 @@
-import { makeProduct } from '../../tests/factories/product-factory';
-import { makeUser } from '../../tests/factories/user-factory';
-import { InMemoryCartsRepository } from '../../tests/repositories/in-memory-carts';
-import { InMemoryProductsRepository } from '../../tests/repositories/in-memory-products';
-import { InMemoryUsersRepository } from '../../tests/repositories/in-memory-users';
+import { makeProduct } from '../../../tests/factories/product-factory';
+import { makeUser } from '../../../tests/factories/user-factory';
+import { InMemoryCartsRepository } from '../../../tests/repositories/in-memory-carts';
+import { InMemoryProductsRepository } from '../../../tests/repositories/in-memory-products';
+import { InMemoryUsersRepository } from '../../../tests/repositories/in-memory-users';
 import { CreateCartUseCase } from './create-cart';
 
 let sut: CreateCartUseCase;
