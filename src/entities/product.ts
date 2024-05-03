@@ -31,6 +31,10 @@ export class Product {
     return this.props.stock
   }
 
+  set stock(stock: number) {
+    this.props.stock = stock
+  }
+
   private validatePrice(price: number) {
     if (price <= 0) {
       throw new Error('Price must be greater than zero')

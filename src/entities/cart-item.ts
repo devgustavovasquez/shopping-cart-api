@@ -23,6 +23,11 @@ export class CartItem {
 
   set quantity(quantity: number) {
     this.validateQuantity(quantity)
+    const newStock = this.props.product.stock + this.props.quantity - quantity
+    if (newStock < 0) {
+      throw new Error('Not enough stock to update quantity');
+    }
+    this.props.product.stock = newStock;
     this.props.quantity = quantity
   }
 

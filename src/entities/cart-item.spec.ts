@@ -1,11 +1,9 @@
 import { CartItem } from "./cart-item";
-import { Product } from "./product";
-import { Name } from "./value-objects/name";
 
 import { makeProduct } from "../../tests/factories/product-factory";
 
 describe('CartItem', () => {
-  const product = makeProduct()
+  const product = makeProduct({ stock: 50 })
   
   it('should be able to create a CartItem', () => {
     const cartItem = new CartItem({
@@ -20,7 +18,7 @@ describe('CartItem', () => {
   it("should be able to update a CartItem", () => {
     const cartItem = new CartItem({
       product,
-      quantity: 10
+      quantity: 1
     })
 
     cartItem.quantity = 5

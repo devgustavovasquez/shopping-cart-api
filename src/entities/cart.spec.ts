@@ -2,25 +2,35 @@ import { Cart } from "./cart";
 
 import { makeCartItem } from "../../tests/factories/cart-item-factory";
 import { makeProduct } from "../../tests/factories/product-factory";
+import { Product } from "./product";
+
+let product: Product
 
 describe('Cart', () => {
+  beforeEach(() => {
+    product = makeProduct({ stock: 50 })
+  })
+  
   it('should be able to create a cart', () => {
     const cart = new Cart({
       id: 1, 
-      items: [makeCartItem()]
+      items: []
     })  
+
+    cart.addItem(makeCartItem({ product, quantity: 10 }))
 
     expect(cart).toBeTruthy()
     expect(cart.id).toBe(1)
     expect(cart.items).toHaveLength(1)
-    expect(cart.items[0].product).toBeTruthy()
-    expect(cart.items[0].quantity).toBeTruthy()
+    expect(cart.items[0].product).toBe(product)
+    expect(cart.items[0].quantity).toBe(10)
+    expect(cart.items[0].product.stock).toBe(40)
   })
 
   it("should to be able to add an item to the cart", () => {
     const cart = new Cart({
       id: 1, 
-      items: [makeCartItem()]
+      items: [makeCartItem({ product })]
     })
 
     cart.addItem(makeCartItem({
@@ -30,12 +40,15 @@ describe('Cart', () => {
     expect(cart.items).toHaveLength(2)
   })
 
+
   it("should to be able increase an item if it already exists in the cart", () => {
-    const cartItem = makeCartItem({ quantity: 10 })
+    const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
-      items: [cartItem]
+      items: []
     })
+
+    cart.addItem(cartItem)
 
     cart.addItem(makeCartItem({
       product: cartItem.product,
@@ -44,24 +57,28 @@ describe('Cart', () => {
 
     expect(cart.items).toHaveLength(1)
     expect(cart.items[0].quantity).toBe(15)
+    expect(cart.items[0].product.stock).toBe(35)
   })
 
   it("should to be able to reduce an item from the cart", () => {
-    const cartItem = makeCartItem({ quantity: 10 })
+    const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
-      items: [cartItem]
+      items: []
     })
+
+    cart.addItem(cartItem)
 
     cart.reduceQuantity(cartItem, 5)
 
     expect(cart.items[0].quantity).toBe(5)
+    expect(cart.items[0].product.stock).toBe(45)
   })
 
   it("should to be able to clear the cart", () => {
     const cart = new Cart({
       id: 1, 
-      items: [makeCartItem()]
+      items: [makeCartItem({ product })]
     })
 
     cart.clearCart()
@@ -71,7 +88,7 @@ describe('Cart', () => {
   })
 
   it("should to be able to remove an item if the result is zero", () => {
-    const cartItem = makeCartItem({ quantity: 10 })
+    const cartItem = makeCartItem({ quantity: 10, product })
     const cart = new Cart({
       id: 1, 
       items: [cartItem]
@@ -83,7 +100,6 @@ describe('Cart', () => {
   })
 
   it("should to be able to calculate the total cost", () => {
-    const product = makeProduct({ price: 10 })
     const product2 = makeProduct({ price: 20 })
     const cart = new Cart({
       id: 1, 

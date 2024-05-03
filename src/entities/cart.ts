@@ -24,9 +24,11 @@ export class Cart {
     const itemIndex = this.props.items.findIndex((cartItem) => cartItem.product.id === item.product.id);
 
     if (itemIndex === -1) {
+      item.product.stock = item.product.stock - item.quantity
       this.props.items.push(item);
     } else {
-      this.props.items[itemIndex].quantity += item.quantity;
+      const newQuantity = this.props.items[itemIndex].quantity + item.quantity;
+      this.validateAndUpdateQuantity(itemIndex, newQuantity);
     }
   }
 
@@ -37,12 +39,9 @@ export class Cart {
       throw new Error('Cart item not found');
     }
 
-    if ((this.props.items[itemIndex].quantity - quantity) <= 0) {
-      this.props.items.splice(itemIndex, 1);
+    const newQuantity = this.props.items[itemIndex].quantity - quantity;
+    this.validateAndUpdateQuantity(itemIndex, newQuantity);
 
-    } else {
-      this.props.items[itemIndex].quantity -= quantity;
-    }
   }
 
   clearCart(): void {
@@ -51,5 +50,14 @@ export class Cart {
 
   calculateTotalCost(): number {
     return this.props.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
+  }
+
+  private validateAndUpdateQuantity(itemIndex: number, newQuantity: number): void {
+    if (newQuantity <= 0) {
+      this.props.items.splice(itemIndex, 1);
+    } else {
+      const item = this.props.items[itemIndex];
+      item.quantity = newQuantity;
+    }
   }
 }

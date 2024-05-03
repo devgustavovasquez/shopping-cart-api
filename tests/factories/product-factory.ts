@@ -6,7 +6,7 @@ export function makeProduct(override: Partial<ProductProps> = {}) {
     id: 1,
     name: new Name("Product 1"),
     price: 10,
-    stock: 10,
+    stock: 50,
     ...override
   })
 }
