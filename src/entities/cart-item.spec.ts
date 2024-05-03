@@ -43,4 +43,27 @@ describe('CartItem', () => {
       cartItem.quantity = 0
     }).toThrow()
   })
+
+  it("should not be able to update a CartItem with invalid stock", () => {
+    const cartItem = new CartItem({
+      product,
+      quantity: 10
+    })
+
+    expect(() => {
+      cartItem.quantity = 60
+    }).toThrow()
+  })
+
+  it("should not be able to update a CartItem with a decimal quantity", () => {
+    const cartItem = new CartItem({
+      product,
+      quantity: 10
+    })
+    
+
+    expect(() => {
+      cartItem.quantity = 5.5
+    }).toThrow()
+  })
 })
