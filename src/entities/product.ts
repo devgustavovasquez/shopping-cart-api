@@ -1,6 +1,6 @@
 import { Name } from "./value-objects/name"
 
-type ProductProps = {
+export type ProductProps = {
   id: number
   name: Name
   price: number
