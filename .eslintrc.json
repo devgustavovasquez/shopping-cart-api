@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "@rocketseat/eslint-config/node"
+  ],
+  "plugins": ["eslint-plugin-import-helpers"],
+  "rules": {
+    "no-useless-constructor": "off",
+    "no-new": "off",
+    "no-console": "warn",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*", 
+        "next": ["if", "return", "interface", "type", "multiline-const"]
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "module",
+          ["parent", "sibling"],
+          "index"
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "lf",
+        "singleQuote": true
+      }
+    ]
+  }
+}
